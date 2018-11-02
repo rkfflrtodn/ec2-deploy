@@ -1,8 +1,9 @@
 # Secrets
 /.secrets
 
-# Media (Store User-uploaded files)
+# Static, Media ROOT (Store User-uploaded files)
 /.media
+/.static
 
 # Crawler temp data
 /crawler/saved_data
