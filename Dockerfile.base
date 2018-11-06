@@ -1,0 +1,18 @@
+# 이미지 빌드(ec2-deploy폴더에서 실행)
+# docker build -t ec2-deploy -f Dockerfile .
+FROM        python:3.6.7-slim
+MAINTAINER  zxcehdghks@gmail.com
+ENV         LANG                    C.UTF-8
+
+# 패키지 업그레이드, Python3설치
+RUN         apt -y update
+RUN         apt -y dist-upgrade
+RUN         apt -y install gcc nginx supervisor && \
+            pip3 install uwsgi && \
+            apt -y remove gcc && \
+            apt -y autoremove
+
+# requirements.txt파일만 복사 후, 패키지 설치
+# requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ...부분이 재실행 되지 않음
+COPY        requirements-production.txt /tmp/requirements.txt
+RUN         pip3 install -r /tmp/requirements.txt
