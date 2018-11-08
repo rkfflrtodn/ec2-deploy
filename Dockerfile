@@ -6,7 +6,6 @@ ENV         DJANGO_SETTINGS_MODULE config.settings.production
 COPY        ./  /srv/project
 WORKDIR     /srv/project
 
-# 프로세스를 실행할 명령
 WORKDIR     /srv/project/app
 RUN         python3 manage.py collectstatic --noinput
 
